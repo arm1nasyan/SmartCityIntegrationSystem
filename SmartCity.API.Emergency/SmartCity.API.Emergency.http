@@ -1,0 +1,6 @@
+@SmartCity.API.Emergency_HostAddress = http://localhost:5018
+
+GET {{SmartCity.API.Emergency_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,6 @@
+@SmartCity.API.Waste_HostAddress = http://localhost:5210
+
+GET {{SmartCity.API.Waste_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

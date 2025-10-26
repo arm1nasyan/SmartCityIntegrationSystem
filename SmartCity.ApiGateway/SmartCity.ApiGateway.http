@@ -1,0 +1,6 @@
+@SmartCity.ApiGateway_HostAddress = http://localhost:5027
+
+GET {{SmartCity.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
