@@ -1,6 +1,0 @@
-@SmartCity.API.Traffic_HostAddress = http://localhost:5130
-
-GET {{SmartCity.API.Traffic_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
