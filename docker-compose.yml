@@ -1,0 +1,115 @@
+services:
+  # North Shard
+  postgres-north:
+    image: postgres:17-alpine
+    container_name: smartcity-postgres-north
+    environment:
+      POSTGRES_USER: smartcity_admin
+      POSTGRES_PASSWORD: SmartCity2025!
+      POSTGRES_DB: smartcity_traffic
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-north-data:/var/lib/postgresql/data
+    networks:
+      - smartcity-network
+
+  # South Shard
+  postgres-south:
+    image: postgres:17-alpine
+    container_name: smartcity-postgres-south
+    environment:
+      POSTGRES_USER: smartcity_admin
+      POSTGRES_PASSWORD: SmartCity2025!
+      POSTGRES_DB: smartcity_traffic
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-south-data:/var/lib/postgresql/data
+    networks:
+      - smartcity-network
+
+  # East Shard
+  postgres-east:
+    image: postgres:17-alpine
+    container_name: smartcity-postgres-east
+    environment:
+      POSTGRES_USER: smartcity_admin
+      POSTGRES_PASSWORD: SmartCity2025!
+      POSTGRES_DB: smartcity_traffic
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-east-data:/var/lib/postgresql/data
+    networks:
+      - smartcity-network
+
+  # West Shard
+  postgres-west:
+    image: postgres:17-alpine
+    container_name: smartcity-postgres-west
+    environment:
+      POSTGRES_USER: smartcity_admin
+      POSTGRES_PASSWORD: SmartCity2025!
+      POSTGRES_DB: smartcity_traffic
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-west-data:/var/lib/postgresql/data
+    networks:
+      - smartcity-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: smartcity-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - smartcity-network
+
+  # pgAdmin - Database Management UI
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: smartcity-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@smartcity.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - smartcity-network
+    depends_on:
+      - postgres-north
+      - postgres-south
+      - postgres-east
+      - postgres-west
+
+  # Redis Commander - Redis Management UI
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: smartcity-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - smartcity-network
+    depends_on:
+      - redis
+
+volumes:
+  postgres-north-data:
+  postgres-south-data:
+  postgres-east-data:
+  postgres-west-data:
+  redis-data:
+  pgadmin-data:
+
+networks:
+  smartcity-network:
+    driver: bridge

@@ -60,6 +60,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Simulator", "SmartCity.Simulator\SmartCity.Simulator.csproj", "{2425695A-342D-4D08-A8FB-8D9329981F23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{3B674B9D-6BA9-477E-AC48-CF1B6825D3A6}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database-scripts", "database-scripts", "{75BF1900-10EB-4864-B7E4-A6C011263954}"
 EndProject
